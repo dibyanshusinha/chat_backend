@@ -1,0 +1,27 @@
+{
+  "name": "chat_backend",
+  "version": "1.0.0",
+  "description": "A simple chat service backend",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node --watch-path=./src --watch-preserve-output --inspect  ./src/server.js",
+    "start": "node ./src/server.js",
+    "test": "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js",
+    "lint": "./node_modules/.bin/eslint ."
+  },
+  "author": "Dibyanshu",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "helmet": "^7.1.0",
+    "pino": "^8.19.0"
+  },
+  "devDependencies": {
+    "@types/supertest": "^6.0.2",
+    "eslint": "^8.57.0",
+    "jest": "^29.7.0",
+    "supertest": "^6.3.4"
+  }
+}
