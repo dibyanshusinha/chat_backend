@@ -1,0 +1,25 @@
+services:
+  apiservice:
+    restart: always
+    depends_on:
+      dbservice:
+        condition: service_healthy
+        restart: true
+    build:
+      context: ./apis
+      dockerfile: Dockerfile.dev
+    volumes: 
+      - /app/node_modules
+      - ./apis:/app
+    environment: 
+      - NODE_ENV=${NODE_ENV}
+      - DB_URI=mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@dbservice:27017/?authSource=admin
+      - LOG_LEVEL=${LOG_LEVEL}
+      - PORT=3000
+      - LOGS_DIR=${LOGS_DIR}
+      - LOG_DUPLICATION=${LOG_DUPLICATION}
+    ports: 
+      - '${API_EXTERNAL_PORT}:3000'
+
+  
+

@@ -1,5 +1,5 @@
 import pino from 'pino';
-import { LOG_LEVEL, NODE_ENV, LOGS_DIR, LOG_DUPLICATION } from '../config/keys.js';
+import { LOG_LEVEL, NODE_ENV, LOGS_DIR, LOG_DUPLICATION } from '../keys.js';
 
 // Anything that devs want to be logged,
 // Critical failures External API or service failures impacting the application's functionality (after automated recovery //attempts have failed).
@@ -56,6 +56,6 @@ const loggerOptions = {
     serializers
 };
 
-const logger = pino(loggerOptions, pino.multistream(streams, { levels, dedupe: LOG_DUPLICATION } ));
+const logger = pino(loggerOptions, pino.multistream(streams, { levels, dedupe: LOG_DUPLICATION === 'true' } ));
 
 export default logger;

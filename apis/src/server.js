@@ -1,6 +1,9 @@
 import app from './app.js';
 import { logger } from './Logger/index.js';
-import {PORT} from './config/keys.js';
+import { PORT } from './keys.js';
+import db from './db/index.js';
+
+await db();
 
 const server = app.listen(PORT);
 

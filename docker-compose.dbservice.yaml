@@ -1,0 +1,17 @@
+services:
+  dbservice:
+    image: 'mongo'
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
+    volumes: 
+      - ./project_db/localdb/datadir:/data/db
+    ports: 
+      - '${MONGO_EXTERNAL_PORT}:27017'
+    healthcheck: 
+      test: echo 'db.runCommand({find:"app_db_name.devUser"}).ok' | mongosh --authenticationDatabase admin --host localhost -u ${MONGO_ROOT_USER} -p ${MONGO_ROOT_PASSWORD} admin --quiet | grep -q 1
+      interval: 10s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
