@@ -9,7 +9,6 @@ services:
       context: ./apis
       dockerfile: Dockerfile.dev
     volumes: 
-      - /app/node_modules
       - ./apis:/app
     environment: 
       - NODE_ENV=${NODE_ENV}
